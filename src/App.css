@@ -23,7 +23,7 @@ html, body, #root {
 
 /* Header */
 .App-header {
-    padding: 30px 0;
+    padding: 5px 0;
     margin-bottom: 20px;
     text-align: center;
     border-bottom: 1px solid #eaeaea;
@@ -64,8 +64,8 @@ html, body, #root {
 }
 
 .tab.active {
-    color: #3b82f6;
-    border-bottom: 2px solid #3b82f6;
+    color: #f67810;
+    border-bottom: 2px solid #f67810;
 }
 
 .tab:hover:not(.active) {
@@ -106,13 +106,13 @@ html, body, #root {
 }
 
 .url-input:focus {
-    border-color: #3b82f6;
+    border-color: #f67810;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
 }
 
 .load-button {
     padding: 12px 20px;
-    background-color: #3b82f6;
+    background-color: #f67810;
     color: white;
     border: none;
     border-radius: 0 6px 6px 0;
@@ -123,7 +123,7 @@ html, body, #root {
 }
 
 .load-button:hover {
-    background-color: #2563eb;
+    background-color: #f67810;
 }
 
 /* File Upload */
@@ -139,7 +139,7 @@ html, body, #root {
 }
 
 .file-upload:hover {
-    border-color: #3b82f6;
+    border-color:#f67810;
     background-color: #f0f7ff;
 }
 
@@ -195,11 +195,11 @@ footer {
 }
 
 .swagger-ui .btn.execute {
-    background-color: #3b82f6;
+    background-color: #f67810;
 }
 
 .swagger-ui .btn.execute:hover {
-    background-color: #2563eb;
+    background-color:#f67810;
 }
 
 .swagger-ui .opblock-tag {
@@ -208,7 +208,7 @@ footer {
 }
 
 .swagger-ui .opblock .opblock-summary-method {
-    background-color: #3b82f6;
+    background-color: #f67810;
 }
 
 .swagger-ui .response-col_status {

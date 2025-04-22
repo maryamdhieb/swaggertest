@@ -9,8 +9,8 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>Swagger UI React Demo</h1>
-                <p>Explore and test APIs with Swagger UI</p>
+            <img src="./image/T6.png" alt="Description de l'image" width="350" height="250"/>
+
             </header>
             <main>
                 <div className="tabs">
