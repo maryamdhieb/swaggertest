@@ -47,7 +47,9 @@ const LocalSwaggerUI = () => {
             </div>
             {spec && (
                 <div className="swagger-ui-container local-spec">
-                    <SwaggerUI spec={spec} />
+                    <SwaggerUI spec={spec} 
+                     
+                     />
                 </div>
             )}
         </div>

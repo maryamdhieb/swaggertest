@@ -1,0 +1,79 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "TELESYS API",
+    "version": "1.0.12"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5173/api"
+    }
+  ],
+  "paths": {
+    "/T6/Client11/{Multi}/{NC}": {
+      "get": {
+        "summary": "Récupérer un client",
+        "description": "Cette méthode récupère un client en fonction du paramètre de chemin `Multi` et `NC`.",
+        "parameters": [
+          {
+            "name": "Multi",
+            "in": "path",
+            "description": "Identifiant de la société",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NC",
+            "in": "path",
+            "description": "Identifiant du client",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Détails du client trouvé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "NC": { "type": "string" },
+                    "Lib": { "type": "string" },
+                    "MF": { "type": "string" },
+                    "Adr1": { "type": "string" },
+                    "Adr2": { "type": "string" },
+                    "Mail": { "type": "string" },
+                    "Tel": { "type": "string" },
+                    "Activite": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Paramètre manquant ou invalide"
+          }
+         
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
