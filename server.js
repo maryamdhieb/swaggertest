@@ -2,19 +2,27 @@ const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const path = require('path');
 
+console.log("==> Initialisation du serveur...");
+
 const app = express();
 
-// Proxy /api vers le vrai backend
 app.use('/api', createProxyMiddleware({
   target: 'http://41.230.48.11:4800',
   changeOrigin: true,
   pathRewrite: { '^/api': '' },
   onProxyRes: function (proxyRes, req, res) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://swaggertest-44bx.onrender.com');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Origin', '*');
   }
 }));
 
-// Servir le build React
 app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('*', (req, res) => {
+  console.log(`==> Route non trouvée : ${req.url}`);
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Serveur démarré sur le port ${PORT}`);
+});
