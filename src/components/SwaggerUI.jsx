@@ -3,8 +3,8 @@ import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
 
 const SwaggerUIComponent = () => {
-  const [url, setUrl] = useState("/test.json");
-  const [inputUrl, setInputUrl] = useState("/test.json");
+  const [url, setUrl] = useState("/Authentification.json");
+  const [inputUrl, setInputUrl] = useState("/Authentification.json");
 
   const handleUrlChange = (e) => {
     setInputUrl(e.target.value);
@@ -35,8 +35,8 @@ const SwaggerUIComponent = () => {
       </div>
       <div className="swagger-ui-container">
         <SwaggerUI
-          url="/test.json" // passe par le proxy vite
-      
+          key={url} // Force re-render when URL changes
+          url={url} // Use dynamic url state
         />
       </div>
     </div>

@@ -6,30 +6,17 @@
   },
   "servers": [
     {
-      "url": "http://41.230.48.11:4800"
+      "url": "http://localhost:5173/api"
     }
   ],
  
-  "components": {
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
-      }
-    }
-  },
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
+  
+
   "paths": {
-    "/T6/Client11/{Multi}": {
+    "/T6/Client11/{Multi}/{NC}": {
       "get": {
-        "summary": "Récupérer un agent",
-        "description": "Cette méthode récupère un agent en fonction du paramètre de chemin `multi`.",
-       
+        "summary": "Récupérer un client",
+        "description": "Cette méthode récupère un client en fonction du paramètre de chemin `Multi` et `NC`.",
         "parameters": [
           {
             "name": "Multi",
@@ -39,24 +26,38 @@
             "schema": {
               "type": "string"
             }
-           
+          },
+          {
+            "name": "NC",
+            "in": "path",
+            "description": "Identifiant du client",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-          
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "responses": {
           "200": {
-            "description": "Détails de l'agent trouvé",
+            "description": "Détails du client trouvé",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "Agent": {
-                      "type": "string"
-                    },
-                    "NomAgent": {
-                      "type": "string"
-                    }
+                    "NC": { "type": "string" },
+                    "Lib": { "type": "string" },
+                    "MF": { "type": "string" },
+                    "Adr1": { "type": "string" },
+                    "Adr2": { "type": "string" },
+                    "Mail": { "type": "string" },
+                    "Tel": { "type": "string" },
+                    "Activite": { "type": "string" }
                   }
                 }
               }
@@ -64,13 +65,15 @@
           },
           "400": {
             "description": "Paramètre manquant ou invalide"
-          },
-          "404": {
-            "description": "Agent non trouvé"
           }
+         
         }
       }
+    
+        
     },
+ 
+   
     "/T6/Famille/{Multi}": {
       "get": {
         "summary": "Récupérer une famille",
@@ -87,7 +90,11 @@
             }
           }
         ],
-     
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Détails du famille trouvé",
@@ -117,75 +124,6 @@
       }
     },
 
-    "/T6/Authentification": {
-      "post": {
-        "summary": "Récupérer Token",
-        "description": "Retourne un token à partir des informations utilisateur.",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        
-        "requestBody": {
-          "required": true,
-
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "Utilisateur": {
-                    "type": "string",
-                    "description": "Nom de l'utilisateur"
-                  },
-                  "Login": {
-                    "type": "string",
-                    "description": "Identifiant"
-                  },
-                  "Pass": {
-                    "type": "string",
-                    "description": "Mot de passe"
-                  }
-                },
-                "required": ["Utilisateur", "Login", "Pass"]
-              }
-            }
-          }
-        },
-        
-        "responses": {
-          "200": {
-            "description": "Authentification réussie",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Token": {
-                      "type": "string"
-                    },
-                    "DateExpT": {
-                      "type": "string"
-                    },
-                    "HeureExpT": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Paramètre manquant ou invalide"
-          },
-          "404": {
-            "description": "Utilisateur non trouvé"
-          }
-        }
-      }
-    },
-    
     "/T6/SousFamille1/{Multi}": {
       "get": {
         "summary": "Récupérer une sous famille 1",
@@ -199,6 +137,11 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -244,6 +187,11 @@
             }
           }
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Détails du sous famille 2 trouvé",
@@ -286,6 +234,11 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -349,6 +302,11 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -439,6 +397,11 @@
             }
           }
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Détails du client trouvé",
@@ -509,6 +472,11 @@
             }
           }
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Détails de l'agent trouvé",
@@ -570,6 +538,11 @@
             "type": "string"
            }
          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -635,6 +608,11 @@
            }
          }
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Détails de l'article trouvé",
@@ -664,6 +642,14 @@
             "description": "Article non trouvé"
           }
         }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   }
