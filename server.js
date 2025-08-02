@@ -10,7 +10,7 @@ app.use('/api', createProxyMiddleware({
   changeOrigin: true,
   pathRewrite: { '^/api': '' },
   onProxyRes: function (proxyRes, req, res) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://swaggertelesys.onrender.com');
+    res.setHeader('Access-Control-Allow-Origin', 'https://swaggertest-44bx.onrender.com');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   }
