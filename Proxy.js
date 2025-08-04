@@ -5,7 +5,7 @@ const app = express();
 
 // Middleware CORS
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // ou ton domaine React
+  res.header('Access-Control-Allow-Origin', 'https://swaggertest-yw9i.onrender.com'); // ou ton domaine React
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
