@@ -1,22 +1,17 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-
 const app = express();
 
-
-
-// Proxy des appels vers l'API Telesys
 app.use('/api', createProxyMiddleware({
   target: 'http://41.230.48.11:4800',
   changeOrigin: true,
-  pathRewrite: { '^/api': '' }
+  pathRewrite: { '^/api': '' },
+  onProxyRes: function (proxyRes, req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  }
 }));
-app.get('/', (req, res) => {
-  res.send('Proxy is running...');
-});
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Proxy serveur démarré sur le port ${PORT}`);
-});
+ app.listen(3000, () => console.log('Proxy running on http://localhost:3000'));
