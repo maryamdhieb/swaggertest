@@ -6,7 +6,7 @@
   },
   "servers": [
   {
-    "url": "http://41.230.48.11:4800",
+    "url": "https://swaggertest1.onrender.com/api",
     "description": "Production server"
   }
 ],
