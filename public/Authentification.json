@@ -5,10 +5,16 @@
     "version": "1.0.12"
   },
   "servers": [
-    {
-      "url": "https://swaggertest-44bx.onrender.com/api"
-    }
-  ],
+  {
+    "url": "http://localhost:4800",
+    "description": "Local server"
+  },
+  {
+    "url": "https://swaggertest-yw9i.onrender.com/api",
+    "description": "Production server"
+  }
+],
+
   "components": {
     "securitySchemes": {
       "bearerAuth": {

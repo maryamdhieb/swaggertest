@@ -1,46 +1,20 @@
-import React, { useState } from "react";
+// 
 import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
+import spec from "./Authentification.json"; // ou .yaml
 
-const SwaggerUIComponent = () => {
-  const [url, setUrl] = useState("/Authentification.json");
-  const [inputUrl, setInputUrl] = useState("/Authentification.json");
+const isDev = import.meta.env.DEV;
 
-  const handleUrlChange = (e) => {
-    setInputUrl(e.target.value);
-  };
+spec.servers = [
+  {
+    url: isDev
+      ? "http://localhost:4800"
+      : "https://swaggertest-44bx.onrender.com/api"
+  }
+];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setUrl(inputUrl);
-  };
+function App() {
+  return <SwaggerUI spec={spec} />;
+}
 
-  return (
-    <div className="swagger-container">
-      <div className="url-form">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              value={inputUrl}
-              onChange={handleUrlChange}
-              placeholder="Enter Swagger JSON URL"
-              className="url-input"
-            />
-            <button type="submit" className="load-button">
-              Load API
-            </button>
-          </div>
-        </form>
-      </div>
-      <div className="swagger-ui-container">
-        <SwaggerUI
-          key={url} // Force re-render when URL changes
-          url={url} // Use dynamic url state
-        />
-      </div>
-    </div>
-  );
-};
-
-export default SwaggerUIComponent;
+export default App;
