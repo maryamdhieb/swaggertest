@@ -12,6 +12,9 @@ app.use('/api', createProxyMiddleware({
   changeOrigin: true,
   pathRewrite: { '^/api': '' }
 }));
+app.get('/', (req, res) => {
+  res.send('Proxy is running...');
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
