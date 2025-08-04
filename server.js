@@ -1,28 +1,15 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
-const path = require('path');
-
-console.log("==> Initialisation du serveur...");
 
 const app = express();
 
 app.use('/api', createProxyMiddleware({
   target: 'http://41.230.48.11:4800',
   changeOrigin: true,
-  pathRewrite: { '^/api': '' },
-  onProxyRes: function (proxyRes, req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-  }
+  pathRewrite: { '^/api': '' }
 }));
 
-app.use(express.static(path.join(__dirname, 'dist')));
-
-app.get('*', (req, res) => {
-  console.log(`==> Route non trouvée : ${req.url}`);
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`✅ Serveur démarré sur le port ${PORT}`);
+  console.log(`Proxy server listening on port ${PORT}`);
 });
