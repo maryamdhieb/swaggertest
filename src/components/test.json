@@ -6,8 +6,7 @@
   },
   "servers": [
   {
-    "url": "/api",
-    "description": "Production server"
+    "url": "/api"
   }
 ],
 

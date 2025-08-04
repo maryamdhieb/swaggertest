@@ -7,6 +7,16 @@ app.use('/api', createProxyMiddleware({
   target: 'http://41.230.48.11:4800',
   changeOrigin: true,
   pathRewrite: { '^/api': '' },
+  onProxyRes(proxyRes, req, res) {
+    let body = [];
+    proxyRes.on('data', function(chunk) {
+      body.push(chunk);
+    });
+    proxyRes.on('end', function() {
+      body = Buffer.concat(body).toString();
+      console.log('Proxy response body:', body);
+    });
+  }
   // onProxyRes: function (proxyRes, req, res) {
   //   res.setHeader('Access-Control-Allow-Origin', 'localhost:3000');
   //   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
