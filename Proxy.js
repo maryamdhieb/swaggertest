@@ -3,25 +3,20 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 
+// Middleware CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // ou ton domaine React
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+// Proxy /api vers API distante
 app.use('/api', createProxyMiddleware({
   target: 'http://41.230.48.11:4800',
   changeOrigin: true,
-  pathRewrite: { '^/api': '' },
-  onProxyRes(proxyRes, req, res) {
-    let body = [];
-    proxyRes.on('data', function(chunk) {
-      body.push(chunk);
-    });
-    proxyRes.on('end', function() {
-      body = Buffer.concat(body).toString();
-      console.log('Proxy response body:', body);
-    });
-  }
-  // onProxyRes: function (proxyRes, req, res) {
-  //   res.setHeader('Access-Control-Allow-Origin', 'localhost:3000');
-  //   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
-  //   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  // }
+  pathRewrite: { '^/api': '' }
 }));
 
-// app.listen(3000, () => console.log('Proxy running on http://localhost:3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Proxy running on port ${PORT}`));
