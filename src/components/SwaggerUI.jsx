@@ -9,7 +9,7 @@ spec.servers = [
   {
     url: isDev
       ? "http://localhost:4800"
-      : "https://swaggertest-44bx.onrender.com/api"
+      : "https://swaggertest-yw9i.onrender.com/api"
   }
 ];
 
