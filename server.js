@@ -1,17 +1,24 @@
+// server.js
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const path = require('path');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
+// Proxy vers l'API distante
 app.use('/api', createProxyMiddleware({
   target: 'http://41.230.48.11:4800',
   changeOrigin: true,
   pathRewrite: { '^/api': '' },
-  onProxyRes: function (proxyRes, req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  }
 }));
 
- app.listen(3000, () => console.log('Proxy running on http://localhost:3000'));
+// Serve ton app React buildée
+app.use(express.static(path.join(__dirname, 'dist')));
+app.get('*', (req, res) =>
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
+);
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});

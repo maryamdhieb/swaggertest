@@ -3,9 +3,8 @@ import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
 
 const SwaggerUIComponent = () => {
- const [url, setUrl] = useState("https://swaggertest1.onrender.com/api/T6/Authentification");
- const [inputUrl, setInputUrl] = useState("https://swaggertest1.onrender.com/api/T6/Authentification");
-
+  const [url, setUrl] = useState("/test.json");
+  const [inputUrl, setInputUrl] = useState("/test.json");
 
   const handleUrlChange = (e) => {
     setInputUrl(e.target.value);
