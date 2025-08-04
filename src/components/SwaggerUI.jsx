@@ -1,7 +1,7 @@
 // 
 import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
-import spec from "./Authentification.json"; // ou .yaml
+import spec from "./test.json"; // ou .yaml
 
 const isDev = import.meta.env.DEV;
 
